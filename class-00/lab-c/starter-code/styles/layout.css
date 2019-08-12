@@ -1,0 +1,22 @@
+
+nav ul {
+    float: right;
+  }
+  
+  nav li {
+    float: left;
+    padding-right: 2px;
+  }
+
+.recipe li {
+  float: left;
+  width: 40%;
+  font-size: 1.3em;
+  line-height: 31px;
+}
+
+section hr {
+    border-bottom: 1px solid #eee;
+    height: 0;
+  }
+
