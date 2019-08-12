@@ -1,28 +1,6 @@
 
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,visualstudiocode
 
-### Nicholas ###
-
-db 
-temp 
-data
-.env 
-*.env
-package-lock.json
-aws.yml
-**FACILITATOR*
-**facilitator*
-**solution*
-**code-demos*
-**whiteboard-diagrams*
-**slides*
-**LECTURE*
-**warm-up*
-**demos*
-**lab*
-**challenges*
-**city-explorer-app/back-end/*
-
 ### Linux ###
 *~
 
