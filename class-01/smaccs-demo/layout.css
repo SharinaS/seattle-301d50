@@ -1,0 +1,21 @@
+div {
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+
+body { 
+  width: 300px;
+  margin: auto;
+}
+
+
+@media(min-width: 700px){
+  body {
+    width: 600px;
+    margin: auto;
+  }
+
+  
+}
+

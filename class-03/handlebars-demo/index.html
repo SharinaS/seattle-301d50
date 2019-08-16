@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Seattle Neighborhood Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+
+    <script id="entry-template" type="text/x-handlebars-template">
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{body}}
+        </div>
+      </div>
+    </script>
+
+    <script id="neigborhood-template" type="text/x-handlebars-template">
+
+      <div>
+        <h1>{{name}}, {{city}}</h1>
+        <p class="textCenter">The neigborhood {{name}} in {{city}} has a population of: {{population}} people, it was founded in {{founded}}</p>
+        {{{body}}}
+      </div>
+
+    </script>
+
+  <script id="dog-template" type="text/x-handlebars-template">
+    <div class="card">
+      <h2>{{name}}</h2>
+      <img src="{{image_url}}" alt="{{hobbies}}">
+      <p>{{hobbies}}</p>
+    </div>
+  </script>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Dog Stats</h1>
+      </section>
+    </header>
+
+    <main>
+      <section id="dogs" class="deck">   
+        <div class="card">
+          <h2>Clifford</h2>
+          <img src="ginger.jpeg" alt="clifford doing things">
+          <p>Crushing houses accidentally</p>
+        </div>    
+      </section>
+<!-- name:        'Fremont',
+    city:        'Seattle',
+    population:  '23,566',
+    founded:     '1820',
+    body:        '<p>This is example text to show you how <strong>HTML</strong> can be escaped using <em>Handlebars</em>.</p>' -->
+      <section id="neighborhoods">
+        <div>
+          <h1>Fremont, Seattle</h1>
+          <p>The neigborhood Fremont in Seattle has a population of: 23566 people, it was founded in 1820</p>
+          <p>This is example text to show you how <strong>HTML</strong> can be escaped using <em>Handlebars</em>.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; 2018 Fake Data Limited</span>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="scripts/neighborhoods.js"></script>
+    <script src="scripts/dogs.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
