@@ -7,34 +7,41 @@ Read through this code as if you are the interpreter. Find all of the mistakes i
 'use strict';
 
 const express = require('express');
+const pg= require('pg');
 
-const app = app();
+const app = express();
 
-app.post(('/') => (request, response) {
-  let SQL = 'Insert into users values $0, $1, $2';
+const client = new pg.Client('DATABASE_URL (http://postgres:5432/city_explorer')
+client.connect();
+client.on('error', () => do things); 
 
-  let values = {id, request.username, request.password};
+app.get('/user' , (request, response) => {
+  let SQL = 'INSERT INTO users(username, password, age) VALUES ($1, $2, $3)';
+
+  let values = [request.query.username, request.query.password, request.query.age];
   
-  client.query(SQL)
+  client.query(SQL, values)
     .then({
-      response.send(result.rowsCount);
+      response.send(result.rowCount);
     })
 })
 
-app.listen(PORT, () {
-  console.log('Listening on ${PORT}')}
+// port undefined
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`)}
 );
 ```
+
 
 ## schema.sql
 
 ```
-DROP TABLE IF NOT EXISTS users
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE users() {
-  id SERIAL KEY;
-  username VARCHAR;
-  password VARCHAR;
-  age NUM;
-}
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255),
+  password VARCHAR(255),
+  age NUMERIC
+);
 ```
