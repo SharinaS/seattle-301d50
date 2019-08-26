@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>My Grocery List</h1>
+    <p><a href="/">Home</a></p>
+    <ul>
+
+      <% for(let i = 0; i < myQuantities.length; i++){ %>
+
+        <li> 
+          <%= myQuantities[i].name %> please buy <%= myQuantities[i].quantity %> of them 
+        </li>
+        
+     <% } %>
+      
+    </ul>
+    <h2> <%= nicholas %> </h2>
+    <h3> <%= nums %> </h3>
+  </body>
+</html>
