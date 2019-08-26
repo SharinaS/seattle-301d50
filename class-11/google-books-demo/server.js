@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 // middleware
 app.use(express.urlencoded({extended: true}));
-app.use(express.static('./public'))
+app.use(express.static('./public'));
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,8 +22,8 @@ app.post('/book-search', searchForBook);
 // Route Handlers
 
 function newSearch (request, response) {
-  response.render('pages/index');  
-  
+  response.render('pages/index');
+
 }
 
 function searchForBook(request, response) {
@@ -35,20 +35,20 @@ function searchForBook(request, response) {
 
   const searchingFor = request.body.search[1];
 
-  let url = 'https://www.googleapis.com/books/v1/volumes?q='
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
   if (searchType === 'title'){
-    const query = `+intitle:${searchingFor}`
+    const query = `+intitle:${searchingFor}`;
     url = url + query;
   } else {
-    const query = `+inauthor:${searchingFor}`
+    const query = `+inauthor:${searchingFor}`;
     url = url + query;
   }
-  
+
   superagent.get(url).then(result => {
     // console.log(result.body);
-    response.send(result.body);
+    response.send(result .body);
     // response.render('pages/booklist')
-  })
+  });
 }
 
 
