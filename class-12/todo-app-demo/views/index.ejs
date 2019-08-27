@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My tasks for the week</h1>
+
+  <ul>
+    <li>
+
+     <% for(let i = 0; i < taskList.length; i++){ %>
+
+        <section>
+          <a href="/tasks/<%=taskList[i].id %>">
+            <h2><%=taskList[i].category%> : <%= taskList[i].title %> :(<%=taskList[i].status%>)</h2>
+          </a>
+          <p><%=taskList[i].description%></p>
+          <p>contact <%=taskList[i].contact%> for deets</p>
+          <p>Due on <%=taskList[i].due%></p>
+          
+        </section>
+     <% } %>
+        
+      <!-- id SERIAL PRIMARY KEY,
+      title VARCHAR(255),
+      description TEXT,
+      contact VARCHAR(255),
+      status VARCHAR(255),
+      category VARCHAR(255),
+      due DATE NOT NULL DEFAULT NOW() -->
+    </li>
+  </ul>
+</body>
+</html>
