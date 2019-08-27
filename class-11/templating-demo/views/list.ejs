@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>My Grocery List</h1>
+    <p><a href="/">Home</a></p>
+    
+    <ul>
+      <!-- <.%= evaluates the javascript and prints the value onto the page -->
+      <li><%= 'mango' + ' lamego' %></li>
+      <li><%= myList[0] %></li>
+      <!-- when I just want the line to run but not to print as text, I leave off the equal "=" -->
+
+      for(var i = 0; i < 10; i++){
+        console.log('hey');
+      }
+
+      <% for(var i = 0; i < myList.length; i++) { %>
+
+        <li><%= myList[i] %></li>
+        
+      <% } %>
+      <li>Bananas</li>
+    </ul>
+  </body>
+</html>

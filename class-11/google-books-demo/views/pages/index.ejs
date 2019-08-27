@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Book Search App</h1>
+
+  <!-- action visits a route (url), method is the route method (get, post etc) -->
+  <form action="book-search" method="POST">
+    <fieldset>
+      <legend>Search by Title or Author</legend>
+      <label for="search">
+        <!-- my request.body will have a property of title as of this line -->
+        <span>Title</span>
+        <input type="radio" name="search" value="title">
+      </label>
+
+      <label for="search">
+        <!-- my request.body will have a property of author as of this line -->
+        <span>Author</span>
+        <input type="radio" name="search" value="author">
+      </label>
+
+      <label for="search">
+        <input type="text" name="search" placeholder="insert book name or author">
+      </label>
+    </fieldset>
+  </form>
+</body>
+</html>
