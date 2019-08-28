@@ -23,6 +23,7 @@ client.on('error', e => console.error(e));
 app.get('/', getAllBooks);
 app.get('/search', showSearch);
 app.post('/search', makeASearch);
+app.post('/books/save', saveBook);
 
 // Callbacks and helpers
 
@@ -59,6 +60,13 @@ function makeASearch(req, res) {
 
     res.render('./pages/searches/show.ejs', { mappedBooks: mappedBooks });
     // res.render('./pages/searches/show.ejs', { mappedBooks });
+  });
+}
+
+function saveBook (req, res){
+  console.log(req.body);
+  client.query('INSERT INTO books (title) VALUES ($1)', [req.body.title]).then(() => {
+    res.redirect('/');
   });
 }
 
