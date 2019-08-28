@@ -76,7 +76,7 @@ function getOneTask(request, response) {
   // our route is app.get('/tasks/:task_id'
   // so whatever comes after /tasks/ in the href of our a tag will be stored at request.params.task_id
 
-  console.log(request.params.task_id);
+  // console.log(request.params.task_id);
 
   client.query('SELECT * FROM tasks WHERE id=$1', [request.params.task_id])
     .then(singleTaskResult => {
@@ -90,8 +90,10 @@ function getOneTask(request, response) {
 }
 
 function showForm(request, response) {
-
+  response.render('./pages/add-view');
 }
+
+
 function addTask(request, response) {
 
   /*
@@ -104,6 +106,20 @@ function addTask(request, response) {
   due DATE NOT NULL DEFAULT NOW()
   */
 
+  // purpose: add a thing to the db, add a task
+
+  // my data lives in request.body
+
+  const b = request.body;
+
+  client.query(`
+  INSERT INTO tasks 
+  (title, description, contact, status, category, due) 
+  VALUES ($1, $2, $3, $4, $5, $6)`, [b.title, b.description, b.contact, b.status, b.category, new Date()])
+    .then(() => {
+      response.redirect('/');
+    })
+    .catch(handleError);
 }
 
 
