@@ -18,7 +18,18 @@
     <!-- variables used in ejs come from -->
     <% for(let i in savedBooks){ %>
       <li>
-        <h2><%= savedBooks[i].title %></h2>
+        <a href="/books/<%= savedBooks[i].id %>" >
+          <h2><%= savedBooks[i].title %></h2>
+        </a>
+
+        <form action="/books/<%= savedBooks[i].id %>" method="POST">
+
+
+          <input type="hidden" name="_method" value="DELETE">
+
+
+          <button>Delete Me</button>
+        </form>
       </li>
       <% } %>
     </ul>

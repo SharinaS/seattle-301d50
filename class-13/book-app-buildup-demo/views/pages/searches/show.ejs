@@ -16,6 +16,7 @@
 
         <form action="/books/save" method="post">
           <input type="hidden" value="<%= mappedBooks[i].title %>" name="title">
+          <input type="text" name="category" required> category
           <button>Save</button>
 
         </form>
