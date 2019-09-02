@@ -7,6 +7,12 @@
   <title>Document</title>
 </head>
 <body>
-  <h1><%=error %></h1>
+  <h1>Search</h1>
+
+  <form action="/search" method="POST">
+    <input name="search" type="radio" value="author">author
+    <input name="search" type="radio" value="title">title
+    <input name="search" type="text"> ask
+  </form>
 </body>
 </html>

@@ -26,20 +26,107 @@ client.on('error', err => console.error(err));
 app.set('view engine', 'ejs');
 
 // API Routes
-app.get('/', getTasks);
+app.get('/', getTasks); // display all currently existing tasks
 
-app.get('/tasks/:task_id', getOneTask);
+app.get('/tasks/:task_id', getOneTask); // look up a task using an id and show just that task, probably lives in a database
 
-app.get('/add', showForm);
+app.get('/add', showForm); // show a form with task details
 
-app.post('/add', addTask);
+app.post('/add', addTask); // when the form sends data to my server, ill add the task to a database
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
+function getTasks (request, response){
+  // const dummyData = [
+  //   {
+  //     title: 'Walk the Ginger',
+  //     description :'see above',
+  //     contact : 'Ginger',
+  //     status :'Ongoing',
+  //     category : 'love',
+  //     due : new Date().toDateString()
+  //   },
+  //   {
+  //     title: 'Walk the Ginger2',
+  //     description: 'see above',
+  //     contact: 'Ginger',
+  //     status: 'Ongoing',
+  //     category: 'love',
+  //     due: new Date().toDateString()
+  //   }
+  // ];
+  client.query('SELECT * FROM tasks')
+    .then(resultFromSQL => {
+      response.render('./index.ejs', {taskList : resultFromSQL.rows});
+    });
+}
+
+function getOneTask(request, response) {
+  //
+  // DATA CAN BE PASSED IN 3 WAYS TO YOUR SERVER
+  // request.body (lives in the request object) (secret);
+  // url https://google.com?query=anything&nicholasQuery=teacher
+  // request.query (lives on the url), comes after the question mark, separated by &
+  // request.params (lives on the url), come before the question mark, take the place of :params standins defined by the server
+  // server will have a route app.get('/something/:param/:wizardParam)
+  // visit https://ourServer/fire/gandalf
+  // we will have access to request.params.param=fire
+  // request.params.wizardParam = gandalf
+  // our route is app.get('/tasks/:task_id'
+  // so whatever comes after /tasks/ in the href of our a tag will be stored at request.params.task_id
+
+  // console.log(request.params.task_id);
+
+  client.query('SELECT * FROM tasks WHERE id=$1', [request.params.task_id])
+    .then(singleTaskResult => {
+      console.log(singleTaskResult.rows[0]);
+      response.render('./pages/detail-view', singleTaskResult.rows[0]);
+
+    });
+
+
+  // show one task
+}
+
+function showForm(request, response) {
+  response.render('./pages/add-view');
+}
+
+
+function addTask(request, response) {
+
+  /*
+ id SERIAL PRIMARY KEY,
+  title VARCHAR(255),
+  description TEXT,
+  contact VARCHAR(255),
+  status VARCHAR(255),
+  category VARCHAR(255),
+  due DATE NOT NULL DEFAULT NOW()
+  */
+
+  // purpose: add a thing to the db, add a task
+
+  // my data lives in request.body
+
+  const b = request.body;
+
+  client.query(`
+  INSERT INTO tasks 
+  (title, description, contact, status, category, due) 
+  VALUES ($1, $2, $3, $4, $5, $6)`, [b.title, b.description, b.contact, b.status, b.category, new Date()])
+    .then(() => {
+      response.redirect('/');
+    })
+    .catch(handleError);
+}
 
 
 function handleError(error, response) {
   response.render('pages/error-view', {error: 'Uh Oh'});
 }
+
+
+
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
