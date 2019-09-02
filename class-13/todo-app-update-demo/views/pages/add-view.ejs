@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../layout/head') %>
+  </head>
+  <body>
+    <%- include('../layout/header') %>
+    <main>
+      <section class="create-view container">
+        <h2 class="view-title"> Add A Task</h2>
+        <form action="/add" method="post">
+          <input type="text" name="title" placeholder="Task Name">
+          <textarea name="description" placeholder="Description of the task" cols="30"
+            rows="10"></textarea>
+          <input type="text" name="category"  placeholder="Category">
+          <input type="text" name="contact"  placeholder="Contact Person">
+          <input type="text" name="status"  placeholder="Completion Status">
+          <button type="submit">Add This Task</button>
+        </form>
+
+      </section>
+    </main>
+  </body>
+</html>
